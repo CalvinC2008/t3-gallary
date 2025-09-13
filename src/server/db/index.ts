@@ -9,7 +9,11 @@ import * as schema from "./schema";
  * update.
  */
 const globalForDb = globalThis as unknown as {
+<<<<<<< HEAD
   conn: postgres.Sql | undefined;
+=======
+	conn: postgres.Sql | undefined;
+>>>>>>> 8928a09 (Added three images)
 };
 
 const conn = globalForDb.conn ?? postgres(env.DATABASE_URL);

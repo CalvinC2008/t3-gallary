@@ -10,6 +10,7 @@ import { index, pgTableCreator } from "drizzle-orm/pg-core";
  *
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
+<<<<<<< HEAD
 export const createTable = pgTableCreator((name) => `t3-gallery_${name}`);
 
 export const posts = createTable(
@@ -24,4 +25,20 @@ export const posts = createTable(
     updatedAt: d.timestamp({ withTimezone: true }).$onUpdate(() => new Date()),
   }),
   (t) => [index("name_idx").on(t.name)]
+=======
+export const createTable = pgTableCreator((name) => `t3-gallery2_${name}`);
+
+export const posts = createTable(
+	"post",
+	(d) => ({
+		id: d.integer().primaryKey().generatedByDefaultAsIdentity(),
+		name: d.varchar({ length: 256 }),
+		createdAt: d
+			.timestamp({ withTimezone: true })
+			.default(sql`CURRENT_TIMESTAMP`)
+			.notNull(),
+		updatedAt: d.timestamp({ withTimezone: true }).$onUpdate(() => new Date()),
+	}),
+	(t) => [index("name_idx").on(t.name)],
+>>>>>>> 8928a09 (Added three images)
 );
